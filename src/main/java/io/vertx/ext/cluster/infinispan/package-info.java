@@ -123,10 +123,6 @@
  * ----
  * <cache-container default-cache="__vertx.distributed.cache">
  *
- *   <replicated-cache name="__vertx.subs">
- *     <expiration interval="-1"/>
- *   </replicated-cache>
- *
  *   <replicated-cache name="__vertx.haInfo">
  *     <expiration interval="-1"/>
  *   </replicated-cache>
@@ -138,11 +134,11 @@
  * </cache-container>
  * ----
  *
- * == Configuring for Kubernetes or Openshift 3
+ * == Configuring for Kubernetes
  *
- * On Kubernetes or Openshift 3, JGroups should be configured to use the `KUBE_PING` protocol.
+ * On Kubernetes, JGroups should be configured to use the `KUBE_PING` protocol.
  *
- * First, add the `org.infinispan:infinispan-cloud:${infinispan.version}` and `org.jgroups.kubernetes:jgroups-kubernetes:1.0.5.Final` dependencies to your project.
+ * First, add the `org.infinispan:infinispan-cloud:${infinispan.version}` and `org.jgroups.kubernetes:jgroups-kubernetes:${jgroups.kubernetes.version}` dependencies to your project.
  * With Maven it looks like:
  *
  * [source,xml]
@@ -155,7 +151,7 @@
  * <dependency>
  *   <groupId>org.jgroups.kubernetes</groupId>
  *   <artifactId>jgroups-kubernetes</artifactId>
- *   <version>1.0.3.Final</version>
+ *   <version>${jgroups.kubernetes.version}</version>
  * </dependency>
  * <dependency>
  * ----
@@ -167,7 +163,7 @@
  * -Dvertx.jgroups.config=default-configs/default-jgroups-kubernetes.xml
  * ----
  *
- * This JGroups stack file is located in the `infinispan-cloud` JAR and preconfigured for Kubernetes/Openshift3.
+ * This JGroups stack file is located in the `infinispan-cloud` JAR and preconfigured for Kubernetes.
  *
  * Also, set the project namespace as the scope for discovery.
  *
